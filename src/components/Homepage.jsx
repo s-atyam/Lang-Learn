@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import homeImage from '../assets/images/painting.jpg'
 import { Link } from "react-router-dom";
 
-const Homepage = () => {
+const Homepage = () => {  
+
   return (
     <>
         <div className='main_container_1 flex_center flex-col'>
@@ -44,10 +45,6 @@ const Homepage = () => {
                 </div>
             </div>
         </div>
-
-        {/* <div className='main_container_1 flex_center flex-col'>
-
-        </div> */}
     </>
   )
 }

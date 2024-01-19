@@ -4,37 +4,70 @@ import { CgMenuGridO, CgClose } from "react-icons/cg";
 import ChooseLang from './body-sections/ChooseLang';
 import Quiz from './body-sections/Quiz';
 import Profile from './body-sections/Profile';
+import { useNavigate } from 'react-router-dom';
 
+const HOST = process.env.REACT_APP_HOST
 
 const Body = () => {
-  const [lang,setLang] = useState('English');
+ 
+  const navigate = useNavigate()
+
   const [quiz,setQuiz] = useState(false);
   const [toggle,setToggle] = useState(false)
   const [profile,setProfile] = useState(false)
 
-  const handleProfile = () => {
+  const [questions,setQuestions] = useState([])
+  const [userAnswer,setUserAnswer] = useState([])
+
+  const handleProfile = async () => {
     if(quiz){
       let temp = window.confirm("Do you want to end this quiz?")
       console.log(temp)
       if(temp){
+        await handleSubmit()
         setQuiz(false)
-        //TODO
       }else return;
     }
     setProfile(true);
   }
 
-  const handleDashboard = () => {
+  const handleDashboard = async () => {
     if(quiz){
       let temp = window.confirm("Do you want to end this quiz?")
       if(temp){
+        await handleSubmit()
         setQuiz(false)
-        //TODO
       }else return;
     }
     setProfile(false);
   }
+
+  const handleSubmit = async () => {
+    console.log(userAnswer)
+    const response = await fetch(`${HOST}/profile/submit`,{
+      method:'POST',
+      headers:{
+        'Content-Type': 'application/json',
+        'authToken': localStorage.getItem('langLearnAT')
+      },
+      body:JSON.stringify({userAnswer})
+    })
+    const data = await response.json();
+    if('error' in data){
+      window.alert(data.error)
+    }else{
+      window.alert(`You have answered ${data.correct} questions correctly`)
+      setQuiz(false)
+      setProfile(true)
+      setUserAnswer([])
+    }
+  }
   
+  const handleLogout = () => {
+    localStorage.removeItem('langLearnAT')
+    navigate('/')
+  }
+
   return (
     <section className='main_container_1 flex_center sm:flex-row flex-col'>
       {/* desktop and tablet menu */}
@@ -44,7 +77,7 @@ const Body = () => {
           <button onClick={()=>{handleDashboard()}} className='button_3 mb-5'>Dashboard</button>
           <button onClick={()=>{handleProfile()}} className='button_3'>Profile</button>
         </div>
-        <button className='button_3'>Logout</button>
+        <button onClick={handleLogout} className='button_3'>Logout</button>
       </div>
       {/* mobile menu */}
       <div className='flex_between w-full h-20 px-7 sm:hidden'>
@@ -58,15 +91,15 @@ const Body = () => {
           <CgClose onClick={()=>{setToggle(false)}} className='text-3xl cursor-pointer text-gray-600' />
           <div className='main_container_2 flex_evenly flex-col shadow-inner'>
             <div className='w-full h-fit flex_between flex-col'>
-              <button className='button_3 mb-5'>Dashboard</button>
-              <button className='button_3'>Profile</button>
+              <button onClick={()=>{handleDashboard()}} className='button_3 mb-5'>Dashboard</button>
+              <button onClick={()=>{handleProfile()}} className='button_3'>Profile</button>
             </div>
-            <button className='button_3'>Logout</button>
+            <button onClick={handleLogout} className='button_3'>Logout</button>
           </div>
           </motion.div>)}
       </div>
-      {!quiz && !profile && <ChooseLang lang={setLang} quiz={setQuiz}/>}
-      {quiz && !profile && <Quiz language={lang}/>}
+      {!quiz && !profile && <ChooseLang setQuiz={setQuiz} setQuestions={setQuestions}/>}
+      {quiz && !profile && <Quiz question={questions} setUserAnswer={setUserAnswer} userAnswer={userAnswer} handleSubmit={handleSubmit}/>}
       {profile && !quiz && <Profile/>}
       
     </section>

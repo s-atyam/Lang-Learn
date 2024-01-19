@@ -3,11 +3,31 @@ import { motion } from 'framer-motion';
 import eng_img from '../../assets/images/english.png'
 import hindi_img from '../../assets/images/hindi.png'
 
+const HOST = process.env.REACT_APP_HOST
+
 const ChooseLang = (props) => {
-    const langSelect = (language)=>{
-        props.lang(language);
-        props.quiz(true);
+  const {setQuiz, setQuestions} = props
+  const langSelect = async (language) => {
+    const authToken = localStorage.getItem('langLearnAT');
+
+    const response = await fetch(`${HOST}/profile/questions/${language}`,{
+      method:'GET',
+      headers:{
+        'Content-Type': 'application/json',
+        'authToken': authToken,
+      }
+    })
+    const data = await response.json();
+
+    if('error' in data){
+      console.log(data.error)
+      return
+    }else{
+      setQuestions(JSON.parse(data.questions))
+      setQuiz(true);
     }
+  }
+
   return (
     <div className='flex_evenly w-full h-full flex-col' style={{backgroundColor:'var(--light-gray-color)'}}>
         <h1 className='heading_2'>Choose your language for Quiz</h1>
