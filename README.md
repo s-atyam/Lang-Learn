@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# Language Learning Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This language learning game is designed to help users improve their language proficiency through interactive exercises and activities. The application includes frontend UI components, backend logic for scoring, and a MongoDB database to store user progress and language data.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Interactive exercises and quizzes to improve language skills.
+- User-friendly frontend interface with clear instructions and feedback.
+- Authentication system for user registration and login.
+- Database management to store user progress, language data, and exercise details.
+- Language selection for users to choose the language they want to learn.
+- Scoring system.
+- Progress tracking.
+- User profile and settings to view progress.
+- Mobile responsiveness.
 
-### `npm start`
+## Local Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Frontend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository:
 
-### `npm test`
+    ```bash
+    git clone git@github.com:s-atyam/Lang-Learn.git
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Create a `.env` file in the frontend root directory:
 
-### `npm run build`
+    ```env
+    REACT_APP_HOST=http://localhost:5000
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Install dependencies and start the frontend:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```bash
+    npm install
+    npm start
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Access the application at `http://localhost:3000` in your browser.
 
-### `npm run eject`
+### Backend
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Change directory to Backend
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    ```bash
+    cd Backend
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. Create a `.env` file in the backend root directory:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    ```env
+    JWT_SECRET=your_jwt_secret
+    MONGO_URI=your_mongodb_connection_string
+    PORT=5000
+    ```
 
-## Learn More
+    Replace `your_jwt_secret` and `your_mongodb_connection_string` with your actual JWT secret key and MongoDB connection string.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Install dependencies and start the backend:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    ```bash
+    npm install
+    npm start
+    ```
 
-### Code Splitting
+4. The backend server will run at `http://localhost:5000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Contributing
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you would like to contribute to the development of this language learning game, feel free to open issues, submit pull requests, or provide feedback.
