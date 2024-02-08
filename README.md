@@ -20,22 +20,22 @@ This language learning game is designed to help users improve their language pro
 
 1. Clone the repository:
 
-    ```bash
-    git clone git@github.com:s-atyam/Lang-Learn.git
-    ```
+   ```bash
+   git clone https://github.com/s-atyam/Lang-Learn.git
+   ```
 
 2. Create a `.env` file in the frontend root directory:
 
-    ```env
-    REACT_APP_HOST=http://localhost:5000
-    ```
+   ```env
+   REACT_APP_HOST=http://localhost:5000
+   ```
 
 3. Install dependencies and start the frontend:
 
-    ```bash
-    npm install
-    npm start
-    ```
+   ```bash
+   npm install
+   npm start
+   ```
 
 4. Access the application at `http://localhost:3000` in your browser.
 
@@ -43,26 +43,26 @@ This language learning game is designed to help users improve their language pro
 
 1. Change directory to Backend
 
-    ```bash
-    cd Backend
-    ```
+   ```bash
+   cd Backend
+   ```
 
 2. Create a `.env` file in the backend root directory:
 
-    ```env
-    JWT_SECRET=your_jwt_secret
-    MONGO_URI=your_mongodb_connection_string
-    PORT=5000
-    ```
+   ```env
+   JWT_SECRET=your_jwt_secret
+   MONGO_URI=your_mongodb_connection_string
+   PORT=5000
+   ```
 
-    Replace `your_jwt_secret` and `your_mongodb_connection_string` with your actual JWT secret key and MongoDB connection string.
+   Replace `your_jwt_secret` and `your_mongodb_connection_string` with your actual JWT secret key and MongoDB connection string.
 
 3. Install dependencies and start the backend:
 
-    ```bash
-    npm install
-    npm start
-    ```
+   ```bash
+   npm install
+   npm start
+   ```
 
 4. The backend server will run at `http://localhost:5000`.
 
